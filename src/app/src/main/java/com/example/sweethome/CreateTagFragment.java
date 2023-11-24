@@ -42,13 +42,10 @@ import java.util.Map;
 public class CreateTagFragment extends Fragment {
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String TAGS_REF = "tags_ref";
-
     private CollectionReference tagsRef;
     private RecyclerView tagsRecyclerView;
     private View view;
     private ArrayList<Tag> tags;
-    private AppContext app;
     private String username;
     private TagsAdapter tagsAdapter;
     private TextInputEditText tagInputEditText;
@@ -56,7 +53,6 @@ public class CreateTagFragment extends Fragment {
     private Map tagInfo;
     private Button createButton;
     private Button doneButton;
-    private ImageView removeTagIcon;
     private FirebaseFirestore db;
 
     public CreateTagFragment() {
