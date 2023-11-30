@@ -51,7 +51,7 @@ public class DeleteItemTest {
         onView(withId(R.id.add_button)).perform(click());
         onView(withId(R.id.item_name_field)).perform(ViewActions.typeText("DeleteTest"));
         Thread.sleep(3000);
-        onView(withId(R.id.serial_number_field)).perform(ViewActions.typeText("1234567"));
+        onView(withId(R.id.serial_number_field)).perform(ViewActions.typeText("7234567"));
         onView(withId(R.id.serial_number_field)).perform(ViewActions.pressImeActionButton());
         onView(withId(R.id.tag_input)).perform(ViewActions.typeText("testTag"));
         onView(withId(R.id.tag_input)).perform(ViewActions.pressImeActionButton());

@@ -38,7 +38,7 @@ import org.junit.runner.RunWith;
 // sources: https://stackoverflow.com/questions/27382147/write-a-test-that-clicks-on-views-inside-popupwindow
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class AddItemTest {
+public class SearchItemTest {
     @Rule
     public ActivityScenarioRule<MainActivity> scenario=new ActivityScenarioRule<MainActivity>(MainActivity.class);
 
@@ -48,16 +48,17 @@ public class AddItemTest {
     }
     @Test
     public void testAddItem() throws InterruptedException{
+        // Add first item
         onView(withId(R.id.add_button)).perform(click());
-        onView(withId(R.id.item_name_field)).perform(ViewActions.typeText("AddItemTest"));
+        onView(withId(R.id.item_name_field)).perform(ViewActions.typeText("SearchItemTest"));
         Thread.sleep(3000);
-        onView(withId(R.id.serial_number_field)).perform(ViewActions.typeText("8224567"));
+        onView(withId(R.id.serial_number_field)).perform(ViewActions.typeText("2224567"));
         onView(withId(R.id.serial_number_field)).perform(ViewActions.pressImeActionButton());
-        onView(withId(R.id.tag_input)).perform(ViewActions.typeText("testTag"));
+        onView(withId(R.id.tag_input)).perform(ViewActions.typeText("TagA"));
         onView(withId(R.id.tag_input)).perform(ViewActions.pressImeActionButton());
         Thread.sleep(3000);
         closeSoftKeyboard();
-        onView(withId(R.id.description_field)).perform(ViewActions.typeText("This is a add test"));
+        onView(withId(R.id.description_field)).perform(ViewActions.typeText("This is a search test"));
         closeSoftKeyboard();
         onView(withId(R.id.make_field)).perform(ViewActions.typeText("testMake"));
         closeSoftKeyboard();
@@ -66,7 +67,7 @@ public class AddItemTest {
         onView(withId(R.id.date_field)).perform(click());
         onView(withText("OK")).perform(click());
         Thread.sleep(3000);
-        onView(withId(R.id.value_field)).perform(ViewActions.typeText("119.98"));
+        onView(withId(R.id.value_field)).perform(ViewActions.typeText("10"));
         closeSoftKeyboard();
         onView(withId(R.id.comment_field)).perform(ViewActions.typeText("testComment"));
         closeSoftKeyboard();
@@ -75,8 +76,15 @@ public class AddItemTest {
         onView(withId(R.id.check_icon)).perform(click());
         Thread.sleep(3000);
 
-
-        onData(anything()).inAdapterView(withId(R.id.item_list)).atPosition(0).onChildView(withId(R.id.item_name)).check(matches(withText("AddItemTest")));
+        onView(withId(R.id.search_input)).perform(click(), ViewActions.typeText("SearchItemTest"), ViewActions.pressImeActionButton());
+        Thread.sleep(2000);
+        onData(anything()).inAdapterView(withId(R.id.item_list))
+                .atPosition(0).onChildView(withId(R.id.item_name))
+                .check(matches(withText("SearchItemTest")));
+        onData(anything()).inAdapterView(withId(R.id.item_list)).atPosition(0)
+                .onChildView(withId(R.id.item_name)).check(matches(withText("SearchItemTest")));
+        closeSoftKeyboard();
+        onData(anything()).inAdapterView(withId(R.id.item_list)).atPosition(0).onChildView(withId(R.id.item_name)).check(matches(withText("SearchItemTest")));
         onData(anything()).inAdapterView(withId(R.id.item_list)).atPosition(0).onChildView(withId(R.id.item_checkBox)).perform(click());
         Thread.sleep(3000);
         onView(withId(R.id.delete_action_button)).perform(click());
