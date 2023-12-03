@@ -33,7 +33,7 @@ import java.util.ArrayList;
  * @source Some code has been adapted from the following source:
  * A ListView with Checkboxes (Using FragmentActivity).
  * homepage of andrew lim. Copyright © Andrew Lim Chong Liang.
- * Fair use for educational purposes.
+ * Permission to use has been granted by the Copyright holder.
  * @link https://windrealm.org/tutorials/android/listview-with-checkboxes.php
  */
 public class ItemsCustomAdapter extends ArrayAdapter<Item> {
