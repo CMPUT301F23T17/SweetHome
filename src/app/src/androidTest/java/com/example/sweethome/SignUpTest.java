@@ -1,5 +1,6 @@
 package com.example.sweethome;
 
+/* necessary imports */
 import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -31,7 +32,12 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-
+/**
+ * @class SignUpTest
+ * <p>This class tests signing up a user </p>
+ *
+ * @date <p>December 1, 2023</p>
+ */
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class SignUpTest {

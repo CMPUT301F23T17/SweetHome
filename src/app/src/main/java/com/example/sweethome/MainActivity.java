@@ -1,21 +1,6 @@
 package com.example.sweethome;
-/**
- * MainActivity
- *
- * This class serves as an entry point to the SweetHome application. It extends the
- * AppCompatActivity class and handles the main screen of the application. From here, users can
- * interact with various features in the app.
- * <p>The “screen” extra can be set to “Add Item” or “View / Edit” to indicate the desired screen
- * mode in the {@link com.example.sweethome.ManageItemActivity}.</p>
- *
- * November 10, 2023
- *
- * Sources: https://www.geeksforgeeks.org/how-to-delete-data-from-firebase-firestore-in-android/
- *
- */
 
 /* necessary imports */
-
 import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
@@ -69,6 +54,23 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * @class MainActivity
+ *
+ * <p>This class extends the AppCompatActivity class and handles the main
+ * screen of the SweetHome application. From here, users can
+ * interact with various features in the app.</p>
+ * <p>The “screen” extra can be set to “Add Item” or “View / Edit” to indicate the desired screen
+ * mode in the {@link com.example.sweethome.ManageItemActivity}.</p>
+ *
+ * @date <p>December 4, 2023</p>
+ *
+ * @source How to Delete Data from Firebase Firestore in Android?
+ * The article most-recently was contributed by chaitanyamunje and improved by simmytarika5,
+ * gabaa406, abhishek0719kadiyan. (2022, December 22). GeeksForGeeks.
+ * The content of the article on GeeksForGeeks is licensed under CCBY-SA.
+ * @link https://www.geeksforgeeks.org/how-to-delete-data-from-firebase-firestore-in-android/
+ */
 public class MainActivity extends AppCompatActivity implements IFilterable, NetworkChangeReceiver.NetworkChangeListener {
     /* attributes of this class */
     private ArrayList<Item> itemList;  // do not ever mutate, except for sorting and populating

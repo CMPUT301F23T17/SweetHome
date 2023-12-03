@@ -1,17 +1,4 @@
 package com.example.sweethome;
-/**
- * This class extends the SliderViewAdapter to use a custom adapter to populate image slider views
- * with image data. It imports the Glide library for loading and caching of images from the
- * provided image URIs.
- * <p>This adapter is designed to work with the SliderView library and creates view holders and
- * binds image data to the corresponding view.</p>
- * <p>The adapter dynamically loads images using the Glide library and sets them to the ImageView
- * in the view holder. The view holder recycles view to optimize memory usage.</p>
- * <p>Note: The layout for each slider is defined in the “slider_image.xml” layout resource file,
- * reference by R.layout.slider_image identifier</p>
- *
- * November 10, 2023
- */
 
 /* necessary imports */
 import android.content.Context;
@@ -24,6 +11,21 @@ import com.smarteist.autoimageslider.SliderViewAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @class ImageSliderAdapter
+ *
+ * <p>This class extends the SliderViewAdapter to use a custom adapter to populate image slider views
+ * with image data. It imports the Glide library for loading and caching of images from the
+ * provided image URIs.</p>
+ * <p>This adapter is designed to work with the SliderView library and creates view holders and
+ * binds image data to the corresponding view.</p>
+ * <p>The adapter dynamically loads images using the Glide library and sets them to the ImageView
+ * in the view holder. The view holder recycles view to optimize memory usage.</p>
+ * <p>Note: The layout for each slider is defined in the “slider_image.xml” layout resource file,
+ * reference by R.layout.slider_image identifier</p>
+ *
+ * @date <p>November 10, 2023</p>
+ */
 public class ImageSliderAdapter extends SliderViewAdapter<ImageSliderAdapter.SliderAdapterViewHolder> {
     /* attributes of this class */
     private List<ImageSliderData> imageUris;

@@ -1,16 +1,18 @@
 package com.example.sweethome;
-/**
- * This class represents data for an image in the image slider. It encapsulates the URI of the
- * image to be displayed in the image slider.
- * <p>The class provides getter and setter to access the image URI. The image URI is typically
- * used by an {@link ImageSliderAdapter} to load and display the image in the image slider.</p>
- *
- * November 10, 2023
- */
 
 /* necessary imports */
 import android.net.Uri;
 
+/**
+ * @class ImageSliderData
+ *
+ * <p>This class represents data for an image in the image slider. It encapsulates the URI of the
+ * image to be displayed in the image slider.</p>
+ * <p>The class provides getter and setter to access the image URI. The image URI is typically
+ * used by an {@link ImageSliderAdapter} to load and display the image in the image slider.</p>
+ *
+ * @date <p>November 10, 2023</p>
+ */
 public class ImageSliderData {
     /* attributes of this class */
     private Uri imgUri;

@@ -1,5 +1,6 @@
 package com.example.sweethome;
 
+/* necessary imports */
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -26,7 +27,25 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.List;
 
+/**
+ * @class ForgotPasswordActivity
+ *
+ * <p>This class handles the case where a user has forgotten their password
+ * by sending a password reset email to an email address provided by the user.
+ * The email is sent if it is linked to an existing account, otherwise no email
+ * will be sent and the user will be informed that the account does not exist.</p>
+ *
+ * @date <p>December 1, 2023</p>
+ *
+ * @source <p>Code used in this class was adapted from the official Firebase
+ * documentation. Manage Users in Firebase. The documentation was most recently
+ * updated (2023, November 22). Firebase. The content of the documentation on
+ * Firebase is licensed under the Creative Commons Attribution 4.0 License
+ * and the code samples are licensed under the Apache 2.0 license.
+ * @link https://firebase.google.com/docs/auth/android/manage-users#java_8. </p>
+ */
 public class ForgotPasswordActivity extends AppCompatActivity {
+    /* attributes of this class */
     private EditText editTextSendEmail;
     private Button sendEmailButton;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();

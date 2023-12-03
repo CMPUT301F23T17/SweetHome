@@ -25,7 +25,12 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-
+/**
+ * @class LoginTest
+ * <p>This class tests logging in a user</p>
+ *
+ * @date <p>December 1, 2023</p>
+ */
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class LoginTest {

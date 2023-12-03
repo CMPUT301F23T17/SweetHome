@@ -1,17 +1,20 @@
 package com.example.sweethome;
-/**
- * NetworkChangeReceiver
- *
- * This class is used in MainActivity and ManageItemActivity to continuously checks the internet
- * connection of the app.
- */
 
+/* necessary imports */
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+/**
+ * @class NetworkChangeReceiver
+ *
+ * <p>This class is used in MainActivity and ManageItemActivity to continuously checks the internet
+ * connection of the app.</p>
+ *
+ * @date <p>December 4, 2023</p>
+ */
 public class NetworkChangeReceiver extends BroadcastReceiver {
 
     public interface NetworkChangeListener {

@@ -1,6 +1,6 @@
 package com.example.sweethome;
-// source : https://firebase.google.com/docs/auth/android/password-auth#java_2
 
+/* necessary imports */
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -31,7 +31,23 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.List;
 
+/**
+ * @class LoginActivity
+ *
+ * <p>This class handles logging in a user to the app. </p>
+ *
+ * @date <p>December 1, 2023</p>
+ *
+ * @source <p>Code used in this class was adapted from the official Firebase
+ * documentation. Authenticate with Firebase using Password-Based Accounts on Android.
+ * The documentation was most recently updated (2023, November 22). Firebase.
+ * The content of the documentation on Firebase is licensed under the Creative
+ * Commons Attribution 4.0 License and the code samples are licensed under the
+ * Apache 2.0 license.
+ * @link https://firebase.google.com/docs/auth/android/password-auth#java_2 </p>
+ */
 public class LoginActivity extends AppCompatActivity {
+    /* attributes of this class */
     private FirebaseFirestore db;
     private CollectionReference usersRef;
     private EditText editTextUsername;
@@ -125,8 +141,13 @@ public class LoginActivity extends AppCompatActivity {
         return false;
     }
 
+    /**
+     * Given a username and password, checks if they are valid before trying to
+     * actually sign in (ie. meet all constraints like cannot be empty)
+     * @param enteredUsername
+     * @param password
+     */
     private void attemptLogin(String enteredUsername, String password) {
-
         // Check for empty username input
         if (enteredUsername.isEmpty()) {
             editTextUsername.setError("Username cannot be empty.");
@@ -156,16 +177,13 @@ public class LoginActivity extends AppCompatActivity {
                                 if (user != null) {
                                     String email = user.getEmail();
                                     loginToUserAccount(email, enteredUsername, password);
-                                } else {
-                                    // Username does not exist
+                                } else { // Username does not exist
                                     editTextUsername.setError("Username does not exist. Please sign up.");
                                 }
-                            } else {
-                                // Username does not exist
+                            } else { // Username does not exist
                                 editTextUsername.setError("Username does not exist. Please sign up.");
                             }
-                        } else {
-                            // Username does not exist
+                        } else { // Username does not exist
                             editTextUsername.setError("Username does not exist. Please sign up.");
                         }
                     } else {
@@ -175,8 +193,14 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
+    /**
+     * Given an email address, username, and password, logs a user into the app and
+     * starts the main activity (passing the username into the main activity)
+     * @param email
+     * @param username
+     * @param password
+     */
     private void loginToUserAccount(String email, String username, String password) {
-
         userAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override

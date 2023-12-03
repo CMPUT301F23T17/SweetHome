@@ -1,5 +1,6 @@
 package com.example.sweethome;
 
+/* necessary imports */
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -12,7 +13,17 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+/**
+ * @class WelcomeActivity
+ *
+ * <p>This class serves as an entry point to the SweetHome application.
+ * It checks whether a user is currently signed in and takes them to the
+ * main screen if so, otherwise it takes them to the login page. </p>
+ *
+ * @date <p>December 1, 2023</p>
+ */
 public class WelcomeActivity extends AppCompatActivity {
+    /* attributes of this class */
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference usersRef = db.collection("users");
     private FirebaseAuth userAuth = FirebaseAuth.getInstance();
@@ -20,7 +31,6 @@ public class WelcomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_welcome);
 
         // Check if user is signed in (non-null)
         FirebaseUser currentUser = userAuth.getCurrentUser();
@@ -43,17 +53,23 @@ public class WelcomeActivity extends AppCompatActivity {
                                     startActivity(intent);
                                     finish(); // Close the WelcomeActivity once the process is complete
                                 } else { // if we cannot find the user for whatever reason also go to login activity
-                                    Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
-                                    startActivity(intent);
-                                    finish(); // Close the WelcomeActivity
+                                    goToLogin();
                                 }
+                            } else { // if we cannot find the user for whatever reason also go to login activity
+                                goToLogin();
                             }
+                        } else { // if we cannot find the user for whatever reason also go to login activity
+                            goToLogin();
                         }
                     });
         } else { // otherwise take them to the login activity
-            Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
-            startActivity(intent);
-            finish(); // Close the WelcomeActivity
+            goToLogin();
         }
+    }
+
+    private void goToLogin() {
+        Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish(); // Close the WelcomeActivity
     }
 }

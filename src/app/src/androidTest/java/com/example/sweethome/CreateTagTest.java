@@ -1,5 +1,6 @@
 package com.example.sweethome;
 
+/* necessary imports */
 import static androidx.test.espresso.Espresso.closeSoftKeyboard;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -23,6 +24,22 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+/**
+ * @class CreateTagTest
+ * <p>This class tests creating a tag</p>
+ *
+ * @date <p>December 4, 2023</p>
+ *
+ * @source Answer To:Using Espresso to click view inside RecyclerView item. The original answer
+ * post was made by [username]. ([year], [month] [day]). Most recently the answer was edited by
+ * [username]. ([year], [month] [day]). StackOverflow. The content of the posts on StackOverflow
+ * are licensed under Creative Commons Attribution-ShareAlike.
+ * @link [put the link to the ANSWER that you used]
+ * here is the link to the question for your reference to find the answer but it does not
+ * need to be in the final citation, please remove the section when you are done filling out
+ * the above citation
+ * https://stackoverflow.com/questions/28476507/using-espresso-to-click-view-inside-recyclerview-item
+ */
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class CreateTagTest {
@@ -52,7 +69,6 @@ public class CreateTagTest {
         onView(withId(R.id.done_create_button)).perform(click());
     }
 
-    /* Source: https://stackoverflow.com/questions/28476507/using-espresso-to-click-view-inside-recyclerview-item */
     public static ViewAction clickChildViewWithId(final int id) {
         return new ViewAction() {
             @Override

@@ -1,24 +1,11 @@
 package com.example.sweethome;
-/**
- * The ManageItemActivity class represents the activity for managing items, including adding new
- * item or View/Edit existing ones. The activity includes functionalities for adding tags,
- * capturing and displaying images, and managing item details such as name, description, make,
- * model, serial number, estimated value, purchased date, and comments.
- *
- * November 10, 2023
- *
- */
 
-/* Necessary imports */
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
-
+/* necessary imports */
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
+import android.graphics.PorterDuff;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -33,8 +20,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.graphics.PorterDuff;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -54,19 +45,29 @@ import com.google.firebase.storage.StorageReference;
 import com.smarteist.autoimageslider.SliderView;
 
 import java.io.ByteArrayOutputStream;
+import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.text.DecimalFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 import javax.annotation.Nullable;
 
+/**
+ * @class ManageItemActivity
+ *
+ * <p>The ManageItemActivity class represents the activity for managing items, including adding new
+ * item or View/Edit existing ones. The activity includes functionalities for adding tags,
+ * capturing and displaying images, and managing item details such as name, description, make,
+ * model, serial number, estimated value, purchased date, and comments.</p>
+ *
+ * @date <p>November 10, 2023</p>
+ */
 public class ManageItemActivity extends AppCompatActivity implements BarcodeLookupApi.BarcodeLookupListener, NetworkChangeReceiver.NetworkChangeListener {
     /* attributes and variables of this class */
     private StorageReference photosStorageRef = FirebaseStorage.getInstance().getReference();
@@ -791,11 +792,6 @@ public class ManageItemActivity extends AppCompatActivity implements BarcodeLook
 
         if (value_field.getText().toString().isEmpty()) {
             value_field.setError("Value is required");
-            isValid = false;
-        }
-
-        if (comment_field.getText().toString().isEmpty()) {
-            comment_field.setError("Comment is required");
             isValid = false;
         }
 

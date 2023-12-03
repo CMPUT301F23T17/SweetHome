@@ -1,5 +1,6 @@
 package com.example.sweethome;
 
+/* necessary imports */
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,13 +22,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class implements the adapter for tag entry views on the list
- * of existing tags found in CreateApplyTagFragment
+ * @class TagsAdapter
  *
- * Sources: https://youtu.be/yTvwfEmzMZY
+ * <p>This class implements the adapter for tag entry views on the list
+ * of existing tags found in CreateApplyTagFragment</p>
+ *
+ * @date <p>December 4, 2023</p>
+ *
+ * @source How to create RecyclerView in Android - Android Studio Tutorial.
+ * (2020, November 29). [Video]. YouTube.
+ * @link https://youtu.be/yTvwfEmzMZY
  */
 public class TagsAdapter extends RecyclerView.Adapter<TagViewHolder> {
-
+    /* attributes of this class */
     Context context;
     ArrayList<Tag> tags;
     FirebaseFirestore db;

@@ -1,28 +1,24 @@
 package com.example.sweethome;
-/*
- * Item
- *
- * This class models an item in SweetHome. Item objects
- * contain information on their name, their make, their model
- * an optional serial number, their estimated value, the date
- * they were purchased/acquired, and an optional comment on
- * the item. These fields are the attributes of this class and
- * they can be accessed through getters and setters only to
- * encourage encapsulation.
- *
- * October 28, 2023
- *
- * Sources:
- *
- */
 
 /* necessary imports */
 import com.google.firebase.Timestamp;
 
 import java.io.Serializable;
-import java.net.URL;
 import java.util.ArrayList;
 
+/**
+ * @class Item
+ *
+ * <p>This class models an item in SweetHome. Item objects
+ * contain information on their name, their make, their model
+ * an optional serial number, their estimated value, the date
+ * they were purchased/acquired, and an optional comment on
+ * the item. These fields are the attributes of this class and
+ * they can be accessed through getters and setters only to
+ * encourage encapsulation.</p>
+ *
+ * @date <p>October 28, 2023</p>
+ */
 public class Item implements Serializable {
     /* attributes of this class */
     private String name;
@@ -153,6 +149,10 @@ public class Item implements Serializable {
         return photos;
     }
 
+    public void setPhotos(ArrayList<String> photos) {
+        this.photos = new ArrayList<>(photos);
+    }
+
     public boolean isSelected() {
         return selected;
     }
@@ -161,23 +161,10 @@ public class Item implements Serializable {
         this.selected = selected;
     }
 
-    public void toggleSelected() {
-        selected = !selected;
-    }
-
-    /* function to add a new image URL to the photo arraylist */
-    public void setPhotos(ArrayList<String> photos) {
-        this.photos = new ArrayList<>(photos);
-    }
-
-    /* function to delete an image URL from the photo arraylist */
-    public void deletePhotos(String photo) {
-        this.photos.remove(photo);
-    }
-
     public ArrayList<String> getTags() {
         return this.tags;
     }
+
     public void setTags(ArrayList<String> tags) {
         this.tags = tags;
     }

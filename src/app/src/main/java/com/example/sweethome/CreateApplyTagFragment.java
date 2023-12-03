@@ -1,13 +1,7 @@
 package com.example.sweethome;
 
+/* necessary imports */
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,14 +15,20 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -40,14 +40,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * This class implements the fragment for creating new tags
- * and deleting tags
+ * @class CreateApplyTagFragment
  *
- * Sources: https://developer.android.com/guide/fragments/
+ * <p>This class implements the fragment for creating new tags
+ * and deleting tags.</p>
  *
+ * @date <p>December 4, 2023</p>
+ *
+ * @source <p>Guide on Fragments. The guide was most recently updated (2023, March 22).
+ * Android Developers. The content of the guide on Android Developers is
+ * licensed under the Apache 2.0 license.
+ * @link https://developer.android.com/guide/fragments/. </p>
  */
 public class CreateApplyTagFragment extends Fragment {
-
+    /* attributes of this class */
     private CollectionReference itemsRef;
     private RecyclerView tagsRecyclerView;
     private View view;

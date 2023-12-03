@@ -1,11 +1,12 @@
 package com.example.sweethome;
-/**
- * This represents the item object with information returned by the barcode look api call.
- *
- * November 18, 2023
- *
- */
 
+/**
+ * @class ReturnedItemData
+ *
+ * <p>This represents the item object with information returned by the barcode look api call.</p>
+ *
+ * @date <p>November 18, 2023</p>
+ */
 public class ReturnedItemData {
     private final String name;
     private final String description;

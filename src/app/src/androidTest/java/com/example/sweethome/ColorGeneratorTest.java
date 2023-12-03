@@ -1,10 +1,19 @@
 package com.example.sweethome;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
+/* necessary imports */
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
 import android.graphics.Color;
 
+import org.junit.Test;
+
+/**
+ * @class ColorGeneratorTest
+ * <p>This class tests the color generator</p>
+ *
+ * @date <p>December 4, 2023</p>
+ */
 public class ColorGeneratorTest {
 
     @Test

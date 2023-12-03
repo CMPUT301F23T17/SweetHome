@@ -1,5 +1,6 @@
 package com.example.sweethome;
 
+/* necessary imports */
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -14,6 +15,12 @@ import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
 
+/**
+ * @class CustomAddTagsFieldTest
+ * <p>This class tests adding tags field</p>
+ *
+ * @date <p>December 4, 2023</p>
+ */
 @RunWith(AndroidJUnit4.class)
 public class CustomAddTagsFieldTest {
 

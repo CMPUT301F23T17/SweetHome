@@ -1,19 +1,4 @@
 package com.example.sweethome;
-/**
- * This class extends the AppCompatEdittext class to use EditText component for adding and
- * displaying tags. It includes addTag method to add tags when the user presses the Enter key or
- * when the input action is done. The added tags are displayed as individual items with distinctive
- * colors and can removed.
- * <p>This class also maintains an internal list of added tag names, which can be retrieved
- * using the getAddedTagNames method.</p>
- * <p>This class utilizes a {@link ColorGenerator } to generate random background colors for the
- * tags and determine suitable text color that contrasts well with the background color.</p>
- * <p>Note: The layout for each tag is defined under the “tag_item.xml” layout resource file,
- * referenced by R.layout.tag_item identifier <p>
- *
- *     November 10, 2023
- *
- */
 
 /* necessary imports */
 import android.app.Activity;
@@ -34,6 +19,22 @@ import androidx.appcompat.widget.AppCompatEditText;
 
 import java.util.ArrayList;
 
+/**
+ * @class CustomAddTagsField
+ *
+ * <p>This class extends the AppCompatEdittext class to use EditText component for adding and
+ * displaying tags. It includes addTag method to add tags when the user presses the Enter key or
+ * when the input action is done. The added tags are displayed as individual items with distinctive
+ * colors and can removed.</p>
+ * <p>This class also maintains an internal list of added tag names, which can be retrieved
+ * using the getAddedTagNames method.</p>
+ * <p>This class utilizes a {@link ColorGenerator } to generate random background colors for the
+ * tags and determine suitable text color that contrasts well with the background color. </p>
+ * <p>Note: The layout for each tag is defined under the “tag_item.xml” layout resource file,
+ * referenced by R.layout.tag_item identifier <p>
+ *
+ * @date <p>November 10, 2023</p>
+ */
 public class CustomAddTagsField extends AppCompatEditText {
     /* attributes of this class */
     private LinearLayout tags_container;

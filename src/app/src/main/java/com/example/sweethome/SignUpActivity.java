@@ -1,6 +1,6 @@
 package com.example.sweethome;
-// source : https://firebase.google.com/docs/auth/android/password-auth#java_2
 
+/* necessary imports */
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -31,8 +31,24 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-
+/**
+ * @class SignUpActivity
+ *
+ * <p>This class handles signing up a user to the app. New users
+ * have unique usernames. </p>
+ *
+ * @date <p>December 1, 2023</p>
+ *
+ * @source <p>Code used in this class was adapted from the official Firebase
+ * documentation. Authenticate with Firebase using Password-Based Accounts on Android.
+ * The documentation was most recently updated (2023, November 22). Firebase.
+ * The content of the documentation on Firebase is licensed under the Creative
+ * Commons Attribution 4.0 License and the code samples are licensed under the
+ * Apache 2.0 license.
+ * @link https://firebase.google.com/docs/auth/android/password-auth#java_2 </p>
+ */
 public class SignUpActivity extends AppCompatActivity {
+    /* attributes of this class */
     private FirebaseFirestore db;
     private CollectionReference usersRef;
     private EditText emailEditText;
@@ -106,6 +122,15 @@ public class SignUpActivity extends AppCompatActivity {
         return false;
     }
 
+    /**
+     * Given an email address, username and password, checks if they are valid
+     * before trying to actually sign up the user (ie. meet all constraints like
+     * username is unique or password should match confirmed password)
+     * @param email
+     * @param desiredUsername
+     * @param password
+     * @param confirmPassword
+     */
     private void attemptSignUp(String email, String desiredUsername, String password, String confirmPassword) {
 
         /* check if the email contains any spaces or is empty */
@@ -150,8 +175,15 @@ public class SignUpActivity extends AppCompatActivity {
                 });
     }
 
+    /**
+     * Given an email address, username, and password, creates a new user account
+     * and logs the new user into the app (starts the main activity and passes the
+     * username into the main activity)
+     * @param email
+     * @param username
+     * @param password
+     */
     private void createUserAccount(String email, String username, String password) {
-
         userAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override

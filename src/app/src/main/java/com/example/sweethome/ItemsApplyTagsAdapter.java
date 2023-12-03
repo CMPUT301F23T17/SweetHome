@@ -1,16 +1,4 @@
 package com.example.sweethome;
-/*
- * ItemsCustomAdapter
- *
- * This class defines a custom list to hold Item objects
- * and display the content of them on our frontend layout.
- * This is used by our item adapter in the main activity.
- *
- * October 28, 2023
- *
- * Sources: https://windrealm.org/tutorials/android/listview-with-checkboxes.php
- *
- */
 
 /* necessary imports */
 import android.content.Context;
@@ -32,6 +20,21 @@ import com.smarteist.autoimageslider.SliderView;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+/**
+ * @class ItemsApplyTagsAdapter
+ *
+ * <p>This class defines a custom list to hold Item objects
+ * and display the content of them on our frontend layout.
+ * This is used by our item adapter in the main activity.</p>
+ *
+ * @date <p>October 28, 2023</p>
+ *
+ * @source Some code has been adapted from the following source:
+ * A ListView with Checkboxes (Using FragmentActivity).
+ * homepage of andrew lim. Copyright © Andrew Lim Chong Liang.
+ * Fair use for educational purposes.
+ * @link https://windrealm.org/tutorials/android/listview-with-checkboxes.php
+ */
 public class ItemsApplyTagsAdapter extends ArrayAdapter<Item> {
     /* attributes for this class */
     private ArrayList<Item> items;

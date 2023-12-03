@@ -1,19 +1,18 @@
 package com.example.sweethome;
-/**
- * Color Generator
- *
- * This class is responsible for generating random color codes and determining
- * suitable text color codes based on the background color. This class uses the Color class
- * methods to obtain the generated color code that contrasts well with the background color.
- *
- * November 10, 2023
- *
- */
 
 /* necessary imports */
 import android.graphics.Color;
 import java.util.Random;
 
+/**
+ * @class Color Generator
+ *
+ * <p>This class is responsible for generating random color codes and determining
+ * suitable text color codes based on the background color. This class uses the Color class
+ * methods to obtain the generated color code that contrasts well with the background color.</p>
+ *
+ * @date <p>November 10, 2023</p>
+ */
 public class ColorGenerator {
     /* attributes of this class */
     private int colorCode;
