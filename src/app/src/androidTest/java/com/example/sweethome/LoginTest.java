@@ -82,7 +82,7 @@ public class LoginTest {
     public void testLoginWithNonexistentUsername() throws InterruptedException {
         /* click the username field edit text and put in a nonexistent username */
         onView(withId(R.id.editTextUsername)).perform(click());
-        onView(withId(R.id.editTextUsername)).perform(ViewActions.typeText("NonexistentUsername"));
+        onView(withId(R.id.editTextUsername)).perform(ViewActions.replaceText("NonexistentUsername"));
         /* click the password field edit text and put in a random password */
         onView(withId(R.id.editTextPassword)).perform(click());
         onView(withId(R.id.editTextPassword)).perform(ViewActions.typeText("randomPassword"));
@@ -95,6 +95,9 @@ public class LoginTest {
 
     @Test
     public void testLoginWithEmptyUsername() {
+        /* click the username field edit text and put in a blank username */
+        onView(withId(R.id.editTextUsername)).perform(click());
+        onView(withId(R.id.editTextUsername)).perform(ViewActions.replaceText(""));
         /* click the password field edit text and put in a random password */
         onView(withId(R.id.editTextPassword)).perform(click());
         onView(withId(R.id.editTextPassword)).perform(ViewActions.typeText("randomPassword"));
@@ -108,7 +111,7 @@ public class LoginTest {
     public void testLoginWithEmptyPassword() {
         /* click the username field edit text and put in a random username */
         onView(withId(R.id.editTextUsername)).perform(click());
-        onView(withId(R.id.editTextUsername)).perform(ViewActions.typeText("RandomUsername"));
+        onView(withId(R.id.editTextUsername)).perform(ViewActions.replaceText("RandomUsername"));
         /* click the login button */
         onView(withId(R.id.buttonLogin)).perform(click());
         /* check that we get the expected error (username is empty) */
@@ -119,7 +122,7 @@ public class LoginTest {
     public void testLoginWithIncorrectPassword() throws InterruptedException {
         /* click the username field edit text and put our test username */
         onView(withId(R.id.editTextUsername)).perform(click());
-        onView(withId(R.id.editTextUsername)).perform(ViewActions.typeText("logintest"));
+        onView(withId(R.id.editTextUsername)).perform(ViewActions.replaceText("logintest"));
         /* click the password field edit text and put in a wrong password */
         onView(withId(R.id.editTextPassword)).perform(click());
         onView(withId(R.id.editTextPassword)).perform(ViewActions.typeText("wrongPassword"));
@@ -135,7 +138,7 @@ public class LoginTest {
     public void testGoToMain() throws InterruptedException {
         /* click the username field edit text and put our test username */
         onView(withId(R.id.editTextUsername)).perform(click());
-        onView(withId(R.id.editTextUsername)).perform(ViewActions.typeText("logintest"));
+        onView(withId(R.id.editTextUsername)).perform(ViewActions.replaceText("logintest"));
         /* click the password field edit text and put in our test password */
         onView(withId(R.id.editTextPassword)).perform(click());
         onView(withId(R.id.editTextPassword)).perform(ViewActions.typeText("logintest"));
@@ -150,7 +153,7 @@ public class LoginTest {
     public void testGoToMainAndBack() throws InterruptedException {
         /* click the username field edit text and put our test username */
         onView(withId(R.id.editTextUsername)).perform(click());
-        onView(withId(R.id.editTextUsername)).perform(ViewActions.typeText("logintest"));
+        onView(withId(R.id.editTextUsername)).perform(ViewActions.replaceText("logintest"));
         /* click the password field edit text and put in our test password */
         onView(withId(R.id.editTextPassword)).perform(click());
         onView(withId(R.id.editTextPassword)).perform(ViewActions.typeText("logintest"));
@@ -179,4 +182,3 @@ public class LoginTest {
         Intents.release();
     }
 }
-
