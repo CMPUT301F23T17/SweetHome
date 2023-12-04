@@ -32,10 +32,9 @@ import org.junit.runner.RunWith;
  * @date <p>December 4, 2023</p>
  *
  * @source Answer To:Write a test that clicks on views inside PopupWindow. The original answer
- * post was made by [username]. ([year], [month] [day]). Most recently the answer was edited by
- * [username]. ([year], [month] [day]). StackOverflow. The content of the posts on StackOverflow
- * are licensed under Creative Commons Attribution-ShareAlike.
- * @link https://stackoverflow.com/questions/27382147/write-a-test-that-clicks-on-views-inside-popupwindow
+ * post was made by Nishanth. (2016, April 17). StackOverflow. The content of the posts on
+ * StackOverflow are licensed under Creative Commons Attribution-ShareAlike.
+ * @link https://stackoverflow.com/a/36673422
  */
 @RunWith(AndroidJUnit4.class)
 @LargeTest
