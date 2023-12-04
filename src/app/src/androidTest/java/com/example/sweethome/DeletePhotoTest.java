@@ -1,5 +1,16 @@
 package com.example.sweethome;
 
+/* necessary imports */
+import static android.app.Activity.RESULT_OK;
+import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.intent.Intents.intended;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+
 import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
@@ -18,16 +29,12 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
-import static android.app.Activity.RESULT_OK;
-import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
-import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.intent.Intents.intended;
-import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
-import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withId;
-
+/**
+ * @class DeletePhotoTest
+ * <p>This class tests deleting a photo</p>
+ *
+ * @date <p>December 4, 2023</p>
+ */
 public class DeletePhotoTest {
     @Rule
     public ActivityScenarioRule<WelcomeActivity> welcomeScenario=new ActivityScenarioRule<>(WelcomeActivity.class);

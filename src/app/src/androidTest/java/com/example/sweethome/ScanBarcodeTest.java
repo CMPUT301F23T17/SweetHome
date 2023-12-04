@@ -1,5 +1,6 @@
 package com.example.sweethome;
 
+/* necessary imports */
 import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -21,6 +22,12 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+/**
+ * @class ScanBarcodeTest
+ * <p>This class tests the barcode scanning</p>
+ *
+ * @date <p>December 4, 2023</p>
+ */
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class ScanBarcodeTest {

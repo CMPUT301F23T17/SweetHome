@@ -1,42 +1,39 @@
 package com.example.sweethome;
 
+/* necessary imports */
 import static androidx.test.espresso.Espresso.closeSoftKeyboard;
 import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.clearText;
 import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.CoreMatchers.anything;
-import static org.hamcrest.CoreMatchers.instanceOf;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.not;
 
-import android.app.DatePickerDialog;
-import android.widget.EditText;
-
-import androidx.test.core.app.ActivityScenario;
-import androidx.test.espresso.ViewAction;
 import androidx.test.espresso.action.ViewActions;
-import androidx.test.espresso.matcher.RootMatchers;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 
-
-import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-
-// sources: https://stackoverflow.com/questions/27382147/write-a-test-that-clicks-on-views-inside-popupwindow
+/**
+ * @class SearchItemTest
+ * <p>This class tests searching for items</p>
+ *
+ * @date <p>December 4, 2023</p>
+ *
+ * @source Answer To:Write a test that clicks on views inside PopupWindow. The original answer
+ * post was made by [username]. ([year], [month] [day]). Most recently the answer was edited by
+ * [username]. ([year], [month] [day]). StackOverflow. The content of the posts on StackOverflow
+ * are licensed under Creative Commons Attribution-ShareAlike.
+ * @link https://stackoverflow.com/questions/27382147/write-a-test-that-clicks-on-views-inside-popupwindow
+ */
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class SearchItemTest {

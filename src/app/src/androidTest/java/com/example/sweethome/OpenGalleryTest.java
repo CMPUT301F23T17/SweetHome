@@ -1,5 +1,6 @@
 package com.example.sweethome;
 
+/* necessary imports */
 import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -10,17 +11,19 @@ import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasType;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import androidx.test.rule.GrantPermissionRule;
+
 import android.app.Activity;
 import android.app.Instrumentation;
 import android.content.ComponentName;
 import android.content.Intent;
+
 import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.espresso.action.ViewActions;
 import androidx.test.espresso.intent.Intents;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
+import androidx.test.rule.GrantPermissionRule;
 
 import org.junit.After;
 import org.junit.Before;
@@ -28,6 +31,12 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+/**
+ * @class OpenGalleryTest
+ * <p>This class tests opening the device's gallery</p>
+ *
+ * @date <p>December 4, 2023</p>
+ */
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class OpenGalleryTest {
