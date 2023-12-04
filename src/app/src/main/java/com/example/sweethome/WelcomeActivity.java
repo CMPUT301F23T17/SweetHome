@@ -1,6 +1,7 @@
 package com.example.sweethome;
 
 /* necessary imports */
+
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -12,6 +13,8 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.List;
 
 /**
  * @class WelcomeActivity
@@ -43,15 +46,20 @@ public class WelcomeActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             QuerySnapshot q = task.getResult();
                             if (q != null) {
-                                DocumentSnapshot doc = q.getDocuments().get(0);
-                                if (doc != null && doc.exists()) {
+                                List docs = q.getDocuments();
+                                if (docs.size() != 0 && q.getDocuments().get(0) != null && q.getDocuments().get(0).exists()) {
+                                    // user exists, take them to their main page
+                                    DocumentSnapshot doc = q.getDocuments().get(0);
                                     User user = doc.toObject(User.class);
-                                    assert user != null;
-                                    String username = user.getUsername();
-                                    Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
-                                    intent.putExtra("USERNAME", username); //send username to main activity
-                                    startActivity(intent);
-                                    finish(); // Close the WelcomeActivity once the process is complete
+                                    if (user != null) {
+                                        String username = user.getUsername();
+                                        Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
+                                        intent.putExtra("USERNAME", username); //send username to main activity
+                                        startActivity(intent);
+                                        finish(); // Close the WelcomeActivity once the process is complete
+                                    } else { // if we cannot find the user for whatever reason also go to login activity
+                                        goToLogin();
+                                    }
                                 } else { // if we cannot find the user for whatever reason also go to login activity
                                     goToLogin();
                                 }
