@@ -1,14 +1,16 @@
 package com.example.sweethome;
 
-/* necessary imports */
 import static androidx.test.espresso.Espresso.closeSoftKeyboard;
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.clearText;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import android.view.View;
+
+import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.espresso.ViewAction;
 import androidx.test.espresso.action.ViewActions;
 import androidx.test.espresso.contrib.RecyclerViewActions;
@@ -28,26 +30,36 @@ import org.junit.runner.RunWith;
  * @class CreateTagTest
  * <p>This class tests creating a tag</p>
  *
- * @date <p>December 4, 2023</p>
+ * @date <p>November 30, 2023</p>
  *
  * @source Answer To:Using Espresso to click view inside RecyclerView item. The original answer
- * post was made by [username]. ([year], [month] [day]). Most recently the answer was edited by
- * [username]. ([year], [month] [day]). StackOverflow. The content of the posts on StackOverflow
+ * post was made by blade. (2015, May 20). Most recently the answer was edited by
+ * blade. (2016, August 30). StackOverflow. The content of the posts on StackOverflow
  * are licensed under Creative Commons Attribution-ShareAlike.
- * @link [put the link to the ANSWER that you used]
- * here is the link to the question for your reference to find the answer but it does not
- * need to be in the final citation, please remove the section when you are done filling out
- * the above citation
- * https://stackoverflow.com/questions/28476507/using-espresso-to-click-view-inside-recyclerview-item
+ * @link https://stackoverflow.com/a/30338665
  */
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class CreateTagTest {
     @Rule
-    public ActivityScenarioRule<MainActivity> scenario=new ActivityScenarioRule<MainActivity>(MainActivity.class);
+    public ActivityScenarioRule<WelcomeActivity> scenario=new ActivityScenarioRule<WelcomeActivity>(WelcomeActivity.class);
 
     @Before
     public void setup() throws InterruptedException{
+        Thread.sleep(5000);
+
+        /* Check if a user is logged in */
+        if (isLoggedIn()) {
+            /* Logout the current user */
+            logout();
+        }
+
+        /* Log in the test account */
+        onView(withId(R.id.editTextUsername)).perform(clearText());
+        onView(withId(R.id.editTextUsername)).perform(ViewActions.typeText("logintest"));
+        onView(withId(R.id.editTextPassword)).perform(clearText());
+        onView(withId(R.id.editTextPassword)).perform(ViewActions.typeText("logintest"));
+        onView(withId(R.id.buttonLogin)).perform(click());
         Thread.sleep(5000);
     }
     @Test
@@ -64,11 +76,13 @@ public class CreateTagTest {
     }
 
     @After
-    public void clear() {
+    public void clear() throws InterruptedException{
         onView(withId(R.id.tags_recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(0, clickChildViewWithId(R.id.remove_tag_from_list)));
         onView(withId(R.id.done_create_button)).perform(click());
+        logout();
     }
 
+    /* Source: https://stackoverflow.com/questions/28476507/using-espresso-to-click-view-inside-recyclerview-item */
     public static ViewAction clickChildViewWithId(final int id) {
         return new ViewAction() {
             @Override
@@ -86,5 +100,23 @@ public class CreateTagTest {
                 v.performClick();
             }
         };
+    }
+
+    private boolean isLoggedIn(){
+
+        try {
+            onView(withId(R.id.btn_logout)).check(matches(isDisplayed()));
+        } catch (NoMatchingViewException e) {
+            return false;
+        }
+        return true;
+    }
+
+    private void logout() throws InterruptedException {
+        Thread.sleep( 3000);
+        onView(withId(R.id.btn_logout)).perform(click());
+        Thread.sleep(3000);
+        onView(withId(R.id.profile_logout)).perform(click());
+        Thread.sleep(5000);
     }
 }

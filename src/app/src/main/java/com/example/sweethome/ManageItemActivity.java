@@ -797,4 +797,16 @@ public class ManageItemActivity extends AppCompatActivity implements BarcodeLook
 
         return isValid;
     }
+
+    public LinearLayout getNoImagePlaceholder() {
+        return this.noImagePlaceholder;
+    }
+
+    public LinearLayout getSliderViewFrame() {
+        return sliderViewFrame;
+    }
+
+    public int getOpenGalleryRequestCode() {
+        return this.OPEN_GALLERY_REQUEST_CODE;
+    }
 }

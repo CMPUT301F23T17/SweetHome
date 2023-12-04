@@ -1,17 +1,17 @@
 package com.example.sweethome;
 
-/* necessary imports */
 import static androidx.test.espresso.Espresso.closeSoftKeyboard;
 import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.clearText;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.CoreMatchers.anything;
-
 import android.view.View;
+import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.espresso.ViewAction;
 import androidx.test.espresso.action.ViewActions;
 import androidx.test.espresso.contrib.RecyclerViewActions;
@@ -20,7 +20,6 @@ import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
-
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matcher;
 import org.junit.After;
@@ -33,26 +32,36 @@ import org.junit.runner.RunWith;
  * @class ApplyTagTest
  * <p>This class tests applying a tag to items</p>
  *
- * @date <p>December 4, 2023</p>
+ * @date <p>November 30, 2023</p>
  *
  * @source Answer To:Using Espresso to click view inside RecyclerView item. The original answer
- * post was made by [username]. ([year], [month] [day]). Most recently the answer was edited by
- * [username]. ([year], [month] [day]). StackOverflow. The content of the posts on StackOverflow
+ * post was made by blade. (2015, May 20). Most recently the answer was edited by
+ * blade. (2016, August 30). StackOverflow. The content of the posts on StackOverflow
  * are licensed under Creative Commons Attribution-ShareAlike.
- * @link [put the link to the ANSWER that you used]
- * here is the link to the question for your reference to find the answer but it does not
- * need to be in the final citation, please remove the section when you are done filling out
- * the above citation
- * https://stackoverflow.com/questions/28476507/using-espresso-to-click-view-inside-recyclerview-item
+ * @link https://stackoverflow.com/a/30338665
  */
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class ApplyTagTest {
     @Rule
-    public ActivityScenarioRule<MainActivity> scenario=new ActivityScenarioRule<MainActivity>(MainActivity.class);
+    public ActivityScenarioRule<WelcomeActivity> scenario=new ActivityScenarioRule<WelcomeActivity>(WelcomeActivity.class);
 
     @Before
     public void setup() throws InterruptedException{
+        Thread.sleep(5000);
+
+        /* Check if a user is logged in */
+        if (isLoggedIn()) {
+            /* Logout the current user */
+            logout();
+        }
+
+        /* Log in the test account */
+        onView(withId(R.id.editTextUsername)).perform(clearText());
+        onView(withId(R.id.editTextUsername)).perform(ViewActions.typeText("logintest"));
+        onView(withId(R.id.editTextPassword)).perform(clearText());
+        onView(withId(R.id.editTextPassword)).perform(ViewActions.typeText("logintest"));
+        onView(withId(R.id.buttonLogin)).perform(click());
         Thread.sleep(5000);
 
         /* Create sample item 1 */
@@ -111,15 +120,25 @@ public class ApplyTagTest {
         onView(withId(R.id.check_icon)).perform(click());
         Thread.sleep(3000);
 
-        /* Create sample tag */
+        /* Create sample tag 1 */
         onView(withId(R.id.tag_action_on_button)).perform(click());
         onView(withId(R.id.create_tag_button)).perform(click());
-        onView(withId(R.id.tag_editable_input)).perform(ViewActions.typeText("SampleApply"));
+        onView(withId(R.id.tag_editable_input)).perform(ViewActions.typeText("SampleApply1"));
         Thread.sleep(3000);
         closeSoftKeyboard();
         Thread.sleep(1000);
         onView(withId(R.id.create_new_tag_button)).perform(click());
+
+        /* Create sample tag 2 */
+        onView(withId(R.id.tag_editable_input)).perform(ViewActions.typeText("SampleApply2"));
         Thread.sleep(3000);
+        closeSoftKeyboard();
+        Thread.sleep(1000);
+        onView(withId(R.id.create_new_tag_button)).perform(click());
+        /* Scroll Down */
+        onView(ViewMatchers.withId(R.id.tags_scroll)).perform(ViewActions.swipeUp());
+        Thread.sleep(3000);
+        /* Click Done */
         onView(withId(R.id.done_create_button)).perform(click());
 
         /* Click the items' checkboxes */
@@ -141,18 +160,38 @@ public class ApplyTagTest {
         onView(withId(R.id.spinner_container)).perform(click());
 
         /* Select tag to apply */
-        onData(CoreMatchers.is("SampleApply")).perform(click());
+        onData(CoreMatchers.is("SampleApply1")).perform(click());
         Thread.sleep(3000);
 
         /* Click Apply Button */
         onView(withId(R.id.apply_new_tag_button)).perform(click());
-        Thread.sleep(500);
+        Thread.sleep(3000);
+
+        /* Click spinner */
+        onView(withId(R.id.spinner_container)).perform(click());
+
+        /* Select tag to apply */
+        onData(CoreMatchers.is("SampleApply2")).perform(click());
+        Thread.sleep(3000);
+
+        /* Click Apply Button */
+        onView(withId(R.id.apply_new_tag_button)).perform(click());
+        Thread.sleep(3000);
 
         /* Press Done button */
         onView(withId(R.id.done_create_button)).perform(click());
 
-        onData(anything()).inAdapterView(withId(R.id.item_list)).atPosition(0).onChildView(withId(R.id.tags_container)).atPosition(1).onChildView(withText("SampleApply")).check(matches(isDisplayed()));
-        onData(anything()).inAdapterView(withId(R.id.item_list)).atPosition(0).onChildView(withId(R.id.tags_container)).atPosition(1).onChildView(withText("SampleApply")).check(matches(isDisplayed()));
+        /* Check if the two items have the sample tags applied */
+        Thread.sleep(2000);
+
+        /* Check ags for first item */
+        onData(anything()).inAdapterView(withId(R.id.item_list)).atPosition(0).onChildView(withId(R.id.tags_container)).onChildView(withText("SampleApply1")).check(matches(isDisplayed()));
+        onData(anything()).inAdapterView(withId(R.id.item_list)).atPosition(0).onChildView(withId(R.id.tags_container)).onChildView(withText("SampleApply2")).check(matches(isDisplayed()));
+
+        /* Check tags for first item */
+        onData(anything()).inAdapterView(withId(R.id.item_list)).atPosition(1).onChildView(withId(R.id.tags_container)).onChildView(withText("SampleApply1")).check(matches(isDisplayed()));
+        onData(anything()).inAdapterView(withId(R.id.item_list)).atPosition(1).onChildView(withId(R.id.tags_container)).onChildView(withText("SampleApply2")).check(matches(isDisplayed()));
+
 
     }
 
@@ -169,14 +208,27 @@ public class ApplyTagTest {
         Thread.sleep(3000);
 
 
-        /* Delete sample tag */
+        /* Delete sample tags */
         onView(withId(R.id.tag_action_on_button)).perform(click());
         onView(withId(R.id.create_tag_button)).perform(click());
         onView(withId(R.id.tags_recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(0, clickChildViewWithId(R.id.remove_tag_from_list)));
+        Thread.sleep(2000);
+        onView(withId(R.id.tags_recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(0, clickChildViewWithId(R.id.remove_tag_from_list)));
+        Thread.sleep(2000);
+        onView(withId(R.id.tags_recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(0, clickChildViewWithId(R.id.remove_tag_from_list)));
+
+        /* Scroll Down */
+        onView(ViewMatchers.withId(R.id.tags_scroll)).perform(ViewActions.swipeUp());
+
+        /* Click Done */
         onView(withId(R.id.done_create_button)).perform(click());
+
+        Thread.sleep(2000);
+        logout();
 
     }
 
+    /* Source: https://stackoverflow.com/a/30338665 */
     public static ViewAction clickChildViewWithId(final int id) {
         return new ViewAction() {
             @Override
@@ -195,4 +247,23 @@ public class ApplyTagTest {
             }
         };
     }
+
+    private boolean isLoggedIn(){
+
+        try {
+            onView(withId(R.id.btn_logout)).check(matches(isDisplayed()));
+        } catch (NoMatchingViewException e) {
+            return false;
+        }
+        return true;
+    }
+
+    private void logout() throws InterruptedException {
+        Thread.sleep( 3000);
+        onView(withId(R.id.btn_logout)).perform(click());
+        Thread.sleep(3000);
+        onView(withId(R.id.profile_logout)).perform(click());
+        Thread.sleep(5000);
+    }
+
 }

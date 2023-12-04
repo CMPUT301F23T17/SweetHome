@@ -14,6 +14,7 @@
     app:layout_constraintHeight_percent="0.11"
     android:background="@drawable/rounded_popup">
     <ScrollView
+        android:id="@+id/tags_scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
